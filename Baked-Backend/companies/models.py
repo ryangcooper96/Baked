@@ -3,14 +3,9 @@ from django.conf import settings
 
 # Create your models here.
 
-# Hygiene Rating
-class HygieneRating(models.Model):
-    rating = models.IntegerField()
-    updated_at = models.DateTimeField(auto_now=True)
-
 # Company
 class Company(models.Model):
-    user_id = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, unique=True, on_delete=models.PROTECT)
     name = models.CharField(max_length=100)
     description = models.TextField(max_length=500)
     logo_image = models.ImageField()
@@ -22,23 +17,38 @@ class Company(models.Model):
     contact_email = models.EmailField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    hygiene_rating_id = models.ForeignKey(
-        HygieneRating, on_delete=models.CASCADE
-    )
+
+    def __str__(self):
+        return "%s - %s" % (self.name, self.created_at)
+
+
+class HygieneRating(models.Model):
+    rating = models.IntegerField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    company = models.OneToOneField(Company, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return "%s - %s (%s)" % (self.company.name, self.rating, self.updated_at)
+
 
 # Allergen
 class Allergen(models.Model):
-    name = models.CharField(100)
+    name = models.CharField(max_length=120)
+
+    def __str__(self):
+        return self.name
+
 
 # Product
 class Product(models.Model):
-    company_id = models.ForeignKey(
+    company = models.ForeignKey(
         Company, on_delete=models.CASCADE
     )
     name = models.CharField(max_length=100)
     description = models.CharField(max_length=300)
     image = models.ImageField()
-    allergens = models.ForeignKey(Allergen, many=True)
+    allergens = models.ManyToManyField(Allergen)
     gluten_free = models.BooleanField(default=False)
     vegetarian = models.BooleanField(default=False)
     vegan = models.BooleanField(default=False)
@@ -46,20 +56,25 @@ class Product(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    def __str__(self):
+        return "%s (GF: %s, V: %s, Vg: %s)" % (self.name, self.gluten_free, self.vegetarian, self.vegan)
+
 
 # Line Item
 class LineItem(models.Model):
-
     status_choices = (
-        ('NOT STARTED','Not Started')
-        ('BLOCKED','Blocked')
-        ('WIP','Work In Progress')
+        ('NOT STARTED','Not Started'),
+        ('BLOCKED','Blocked'),
+        ('WIP','Work In Progress'),
         ('DONE','Done'),
     )
 
-    product_id = models.ForeignKey(
+    product = models.ForeignKey(
         Product, on_delete=models.CASCADE
     )
     status = models.CharField(choices=status_choices, max_length=11, default="NOT STARTED")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return "%s - %s" % (self.product.name, self.status)
