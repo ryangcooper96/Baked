@@ -1,5 +1,6 @@
 from rest_framework.views import APIView
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
+from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAdminUser
 
 from .models import Company, Product, LineItem
 from .serializers import CompanySerializer, ProductSerializer, LineItemSerializer
@@ -10,10 +11,14 @@ from .serializers import CompanySerializer, ProductSerializer, LineItemSerialize
 class CompanyList(ListCreateAPIView):
     queryset = Company.objects.all()
     serializer_class = CompanySerializer
+    permission_classes = (IsAdminUser, )
+
 
 class CompanyDetail(RetrieveUpdateDestroyAPIView):
     queryset = Company.objects.all()
     serializer_class = CompanySerializer
+    permission_classes = (IsAuthenticatedOrReadOnly, )
+
 
 
 # Products
