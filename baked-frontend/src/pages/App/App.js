@@ -1,6 +1,13 @@
+import { Route, Routes } from "react-router-dom";
 import { useEffect, useState } from "react";
+
+import NavBar from "../../components/NavBar/NavBar";
+
 import collection from "../../utils/company";
 import "./App.css";
+
+import HomePage from "../HomePage/HomePage";
+import LoginPage from "../LoginPage/LoginPage";
 
 function App() {
   // state
@@ -16,7 +23,15 @@ function App() {
     getResult();
   }, []);
 
-  return <div className="App">App</div>;
+  return (
+    <div className="App">
+      <NavBar />
+      <Routes>
+        <Route exact path="/" element={<HomePage />} />
+        <Route exact path="/login" element={<LoginPage />} />
+      </Routes>
+    </div>
+  );
 }
 
 export default App;

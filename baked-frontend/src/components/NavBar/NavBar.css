@@ -1,0 +1,63 @@
+.NavBar {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: center;
+
+  position: fixed;
+  z-index: 2;
+  min-height: 35px;
+  max-height: 70px;
+  width: 100%;
+  margin: 0;
+  padding: 1vh 0vw;
+
+  background: rgba(50, 50, 50, 1);;
+  color: whitesmoke;
+}
+
+.NavBar > div {
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.NavBar-logo {
+  font-family: 'Rubik Dirt';
+  font-size: 24px;
+}
+
+.NavBar-link {
+  padding: 5px 5px;
+  margin: 0 5px;
+
+  font-size: 12px;
+  text-decoration: none;
+  color: whitesmoke;
+}
+
+.NavBar-welcome {
+  color: grey;
+  font-size: 12px;
+}
+
+/* .NavBar-basket {
+  position: relative;
+}
+
+.NavBar-basketTotal {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  color: white;
+  background: red;
+  font-weight: 800;
+  height: 15px;
+  width: 15px;
+  border-radius: 50vmax;
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+} */
