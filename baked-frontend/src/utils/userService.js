@@ -5,7 +5,9 @@ const BASE_URL = "http://127.0.0.1:8000/"; // Note: Once deployed this should be
 function signup(user) {
   return fetch(BASE_URL + "signup/", {
     method: "POST",
-    headers: new Headers({ "Content-Type": "application/json" }),
+    headers: new Headers({
+      "Content-Type": "application/json",
+    }),
     body: JSON.stringify(user),
   })
     .then((res) => {
@@ -16,8 +18,26 @@ function signup(user) {
 }
 
 function getUser() {
-  console.log(tokenService.getUserFromToken());
   return tokenService.getUserFromToken();
+}
+
+function getUserInfo() {
+  console.log(`Token ${tokenService.getToken()}`);
+  return fetch(
+    `http://127.0.0.1:8000/user/${tokenService.getUserFromToken()}`,
+    {
+      method: "GET",
+      headers: new Headers({
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${tokenService.getToken()}`,
+      }),
+    }
+  )
+    .then((res) => {
+      if (res.ok) return res.json();
+      throw new Error("Couldn't get User Info");
+    })
+    .then((data) => ({ ...data }));
 }
 
 function logout() {
@@ -41,6 +61,7 @@ function login(creds) {
 const exports = {
   signup,
   getUser,
+  getUserInfo,
   logout,
   login,
 };

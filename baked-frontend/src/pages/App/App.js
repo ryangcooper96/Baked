@@ -3,11 +3,12 @@ import { useEffect, useState } from "react";
 
 import NavBar from "../../components/NavBar/NavBar";
 
-import collection from "../../utils/company";
+import company from "../../utils/company";
 import "./App.css";
 
 import HomePage from "../HomePage/HomePage";
 import LoginPage from "../LoginPage/LoginPage";
+import SignUpPage from "../SignUpPage/SignUpPage";
 
 function App() {
   // state
@@ -16,7 +17,7 @@ function App() {
   // useEffect
   useEffect(() => {
     async function getResult() {
-      const data = await collection.get();
+      const data = await company.get();
       setResult({ ...data });
       console.log(data);
     }
@@ -29,6 +30,7 @@ function App() {
       <Routes>
         <Route exact path="/" element={<HomePage />} />
         <Route exact path="/login" element={<LoginPage />} />
+        <Route exact path="/signup" element={<SignUpPage />} />
       </Routes>
     </div>
   );

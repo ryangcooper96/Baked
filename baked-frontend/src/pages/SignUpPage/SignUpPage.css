@@ -1,0 +1,97 @@
+.SignUpPage {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+
+    height: 100vh;
+    width: 100vw;
+}
+
+.formWrapper {
+    background-color: #D4C2C5;
+    padding: 10px 20px;
+    border-radius: 10px;
+
+    width: 240px;
+
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.formWrapper h2 {
+    margin: -60px 0px -10px 0px;
+
+    font-family: 'Pacifico', cursive;
+    font-size: 54px;
+    /* font-family: 'Nunito', sans-serif; */
+    font-weight: 1000;
+    text-shadow: 2px 2px 2px #D4C2C5,
+        -2px 2px 2px #D4C2C5,
+        2px -2px 2px #D4C2C5,
+        -2px -2px 2px #D4C2C5;
+    color: #3C1421;
+}
+
+.formField {
+    padding: 10px 5px 0px 5px;
+}
+
+.formField label {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 600;
+    font-size: 12px;
+    color: #3C1421;
+    background: none;
+
+    margin-left: 5px;
+}
+
+.formField input {
+
+    background: white;
+
+    font-family: 'Nunito', sans-serif;
+    font-weight: 400;
+    border: 5px;
+    border-radius: 3px;
+    /* margin: 10px; */
+    margin-top: 5px;
+    padding: 0 10px;
+    height: 30px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.formButtons {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-end;
+    align-items: center;
+
+    padding: 10px 10px 10px 5px;
+}
+
+.formButtons button {
+    outline: none;
+    border: none;
+    border-radius: 4px;
+
+    font-family: 'Nunito', sans-serif;
+}
+
+button.login {
+    background: #3C1421;
+    color: #D4C2C5;
+
+    border: 2px solid #3C1421;
+}
+
+button.cancel {
+    background: #3C1421;
+    color: #D4C2C5;
+
+    border: 2px solid #3C1421;
+}

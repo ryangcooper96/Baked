@@ -8,25 +8,30 @@ function LoginPage() {
   const navigate = useNavigate()
   const { handleSignupOrLogin } = useUser()
 
+  // State for Form Fields
   const [formState, setFormState] = React.useState({
     email: '',
     password: ''
   });
 
+  // Handle Form Input
   const handleChange = (e) => {
     setFormState({
       ...formState,
-      // Using ES2015 Computed Property Names
       [e.target.name]: e.target.value
     });
   }
+
+  // Handle Form Submit
   const handleSubmit = async (e) => {
+    // Prevent Refresh on Submission
     e.preventDefault();
     try {
+      // Pass Form Data to DjangoAPI
       await userService.login(formState);
       // Let <App> know a user has signed up!
       handleSignupOrLogin();
-      // Successfully signed up - show GamePage
+      // Success! - Navigate to 'HomePage'
       navigate('/');
     } catch (err) {
       // Use a modal or toast in your apps instead of alert
@@ -36,24 +41,20 @@ function LoginPage() {
 
   return (
     <div className="LoginPage">
-      <div className="login-element-wrapper">
-      <header className="header-footer">Log In</header>
-      <form className="form-horizontal" onSubmit={handleSubmit} >
-        <div className="form-group">
-          <div className="col-sm-12">
-            <input type="email" className="form-control" placeholder="Email" value={formState.email} name="email" onChange={handleChange} />
-          </div>
+      <div className="formWrapper">
+      <h2>Log In</h2>
+      <form onSubmit={handleSubmit} >
+        <div className='formField'>
+          <label>EMAIL</label>
+          <input type="email" className="form-control" placeholder="Email" value={formState.email} name="email" onChange={handleChange} />
         </div>
-        <div className="form-group">
-          <div className="col-sm-12">
-            <input type="password" className="form-control" placeholder="Password" value={formState.password} name="password" onChange={handleChange} />
-          </div>
+        <div className='formField'>
+          <label>PASSWORD</label>
+          <input type="password" className="form-control" placeholder="Password" value={formState.password} name="password" onChange={handleChange} />
         </div>
-        <div className="form-group">
-          <div className="col-sm-12 text-center">
-            <button className="login-button">Log In</button>&nbsp;&nbsp;&nbsp;
-            <Link to='/' className='cancel-link'>Cancel</Link>
-          </div>
+        <div className='formButtons'>
+          <button className="login">LOG IN</button>&nbsp;&nbsp;&nbsp;
+          <Link to='/' className='cancel-link'><button className="cancel">CANCEL</button></Link>
         </div>
       </form>
       </div>
