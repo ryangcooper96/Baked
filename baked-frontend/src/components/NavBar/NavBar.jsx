@@ -22,11 +22,11 @@ const NavBar = () => {
     <div className='NavBar'>
 
       <div>
-        <NavLink to='/dashboard' className='NavBar-link'>DASHBOARD</NavLink>
+        <NavLink to='/dashboard' className='NavBar-link'>
+          <span className='NavBar-welcome'>Hi, {user.username} &nbsp;</span><span className="material-symbols-rounded">account_circle</span>
+        </NavLink>
           &nbsp;&nbsp;|&nbsp;&nbsp;
         <NavLink to='' className='NavBar-link' onClick={handleLogout}>LOG OUT</NavLink>
-          &nbsp;&nbsp;|&nbsp;&nbsp;
-        <span className='NavBar-welcome'>Welcome, {user.name}</span>
           &nbsp;&nbsp;|&nbsp;&nbsp;
         <NavLink to='/basket' className='NavBar-link' >BASKET</NavLink>
       </div>

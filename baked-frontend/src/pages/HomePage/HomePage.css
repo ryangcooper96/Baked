@@ -1,0 +1,129 @@
+.HomePage {
+
+}
+
+.heroWrapper {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: flex-start;
+
+    max-height: 100vh;
+
+    background: #E5ECEE;
+}
+
+.heroWelcome {
+    font-family: 'Pacifico', cursive;
+    background: #D4C2C5;
+    min-width: 40vw;
+    width: fit-content;
+    padding: 0 25px 0 20px;
+    margin: 45px 5vw;
+    border-radius: 15px;
+
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.heroWelcome h2 {
+    color: #3C1421;
+    margin: -40px 0 -20px 0px;
+    font-size: 42px;
+}
+
+.heroWelcome h1 {
+    margin: -20px 0 -70px 0;
+    padding: 0;
+    -webkit-text-stroke: 1.5px #3C1421;
+    
+    color: white;
+    font-size: 96px;
+}
+
+.heroSearch {
+        min-width: 40vw;
+        margin: 5vw;
+                
+        background: #3C1421;
+        width: fit-content;
+        padding: 0 25px 0 20px;
+        border-radius: 15px;
+    
+        display: flex;
+        flex-flow: column wrap;
+        justify-content: center;
+        align-items: center;
+
+}
+
+.heroSearch h3 {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 800;
+    color: #D4C2C5;
+    /* -webkit-text-stroke: 1px #3C1421; */
+    /* margin: -13px 0 0 0; */
+    margin: 5px 0 0 0;
+}
+
+.searchContainer {
+    height: 30px;
+    width: 100%;
+    margin: 5px 0 10px 0;
+}
+
+.searchContainer input {
+    height: 100%;
+    width: calc(100% - 30px);
+    padding: 0 10px;
+    border: none;
+    border-radius: 3px 0 0 3px;
+
+    font-family: 'Nunito', sans-serif;
+}
+
+.searchContainer input::placeholder {
+    color: #A6BEC4;
+}
+
+.searchContainer button {
+    height: 100%;
+    width: 30px;
+    padding: 0;
+    margin: 0;
+    
+    background: #A6BEC4;
+    color: #3C1421;
+
+    border: none;
+    border-radius: 0 3px 3px 0;
+}
+
+.searchContainer button .material-symbols-rounded {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    font-size: 24px;
+}
+
+.heroPanel {
+    background: white;
+    padding: 10px 30px;
+    margin: 10px 0;
+    width: 200px;
+}
+
+.heroPanel h3 {
+    font-family: 'Pacifico', cursive;
+    font-weight: 800;
+    padding: 0;
+}
+
+.heroPanel p {
+    font-family: 'Nunito', cursive;
+    font-weight: 300;
+    font-size: 12px;
+}

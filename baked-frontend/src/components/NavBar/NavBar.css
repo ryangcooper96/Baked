@@ -12,8 +12,9 @@
   margin: 0;
   padding: 1vh 0vw;
 
-  background: rgba(50, 50, 50, 1);;
-  color: whitesmoke;
+  background: #3c1421 ;
+  color: #D4C2C5;
+  font-family: 'Nunito', san-serif;
 }
 
 .NavBar > div {
@@ -34,11 +35,11 @@
 
   font-size: 12px;
   text-decoration: none;
-  color: whitesmoke;
+  color: #D4C2C5;
 }
 
 .NavBar-welcome {
-  color: grey;
+  color: silver;
   font-size: 12px;
 }
 

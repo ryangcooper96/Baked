@@ -9,29 +9,20 @@ import "./App.css";
 import HomePage from "../HomePage/HomePage";
 import LoginPage from "../LoginPage/LoginPage";
 import SignUpPage from "../SignUpPage/SignUpPage";
+import DashboardPage from "../DashboardPage/DashboardPage";
 
 function App() {
-  // state
-  const [result, setResult] = useState({});
-
-  // useEffect
-  useEffect(() => {
-    async function getResult() {
-      const data = await company.get();
-      setResult({ ...data });
-      console.log(data);
-    }
-    getResult();
-  }, []);
-
   return (
     <div className="App">
       <NavBar />
-      <Routes>
-        <Route exact path="/" element={<HomePage />} />
-        <Route exact path="/login" element={<LoginPage />} />
-        <Route exact path="/signup" element={<SignUpPage />} />
-      </Routes>
+      <div className="pageWrapper">
+        <Routes>
+          <Route exact path="/" element={<HomePage />} />
+          <Route exact path="/login" element={<LoginPage />} />
+          <Route exact path="/signup" element={<SignUpPage />} />
+          <Route exact path="/dashboard" element={<DashboardPage />} />
+        </Routes>
+      </div>
     </div>
   );
 }

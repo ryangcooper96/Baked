@@ -16,8 +16,8 @@ function create(ownerId) {
 
 // READ
 // Need to access company based on user
-function get() {
-  return fetch(BASE_URL + "1/", {
+function get(ownerId) {
+  return fetch(`${BASE_URL}${ownerId}/`, {
     method: "GET",
   }).then((res) => {
     if (res.ok) return res.json();
