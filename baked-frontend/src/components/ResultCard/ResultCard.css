@@ -1,0 +1,190 @@
+.ResultCard {
+    position: relative;
+    width: 200px;
+
+    font-family: 'Nunito', sans-serif;
+    box-shadow: 6px 4px 0px 0px #D4C2C5;
+
+    transition: 0.3s;
+}
+
+.ResultCard:hover {
+    box-shadow: 8px 6px 0px 0px #3c1421;
+    transform: translate(-3px, -3px);
+    transition: 0.3s;
+}
+
+.ResultCard:hover .textContainer  {
+    border-left: 2px solid #3c1421;
+    border-bottom: 2px solid #3c1421;
+    transition: 0.3s;
+}
+
+.ResultCard:hover .logoContainer {
+    border: 3px solid #3c1421;
+    transition: 0.3s;
+}
+
+.ResultCard:hover .heroContainer .heroBlur {
+    background: linear-gradient( rgba(255, 255, 255, 0.3) 40%, #3c1421 80%);
+    transition: 0.3s;
+}
+
+.logoContainer {
+    position: absolute;
+    top: -15px;
+    left: 10px;
+    z-index: 1;
+    
+    object-fit: contain;
+    
+    height: 60px;
+    width: 60px;
+    
+    border: 3px solid #D4C2C5;
+    border-radius: 50vmax;
+    
+    background: white;
+    
+    transition: 0.3s;
+}
+
+.logoContainer img {
+    width: 100%;
+    border-radius: 50vmax;
+}
+
+.heroContainer {
+    position: relative;
+    
+    height: 180px;
+    width: 100%;
+    
+    background: url("https://merchantsquare.co.uk/media/Gails-Bakery-Interior-Merchant-Square.jpg");
+    background-repeat: none;
+    background-size: cover;
+}
+
+.heroContainer .heroBlur {
+    height: 100%;
+    
+    background: linear-gradient(rgba(255,255,255, 0.2), rgba(255, 255, 255, 0.3) 40%, black 90%);
+    background: linear-gradient(rgba(255, 255, 255, 0.3) 40%, #D4C2C5 80%);
+    /* opacity: 0.9; */
+    transition: 0.3s;
+}
+
+.heroContainer h2 {
+    position: absolute;
+    bottom: 0px;
+    left: 5px;
+    
+    margin: 5px;
+
+    font-size: 20px;
+    font-weight: 1000;
+    line-height: 22px;
+    color: white;
+    /* color:#3c1421; */
+}
+
+.textContainer {
+    /* border-top: 3px solid #DED4F3; */
+    /* border-top: 3px solid #3c1421; */
+    height: 100%;
+    width: 100%;
+    padding: 5px 10px;
+
+    border-left: 2px solid rgba(80, 80, 80, 0.5);
+    border-left: 2px solid #D4C2C5;
+    border-bottom: 2px solid rgba(80, 80, 80, 0.5);
+    border-bottom: 2px solid #D4C2C5;
+
+    transition: 0.3s;
+}
+
+.textContainer p {
+    margin: 0;
+    font-size: 13px;
+    color: rgb(80, 80, 80);
+}
+
+.textContainer .statusContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.textContainer .reviews {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    width: fit-content;
+}
+.textContainer .reviews .material-symbols-rounded {
+    font-size: 24px;
+    color: forestgreen;
+    font-variation-settings:
+        'FILL' 1,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 48
+}
+.textContainer .reviews .avg {
+    color: forestgreen;
+    padding-top: 3px;
+    font-size: 14px;
+    font-weight: 1000;
+}
+.textContainer .reviews .total {
+    padding-top: 3px;
+    font-size: 12px;
+    color:rgba(80, 80, 80, 0.5);
+}
+
+.textContainer .distance {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    width: fit-content;
+}
+
+.textContainer .distance .material-symbols-rounded {
+    font-size: 24px;
+    color: #3c1421;
+    font-variation-settings:
+        'FILL' 1,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 48
+}
+
+.textContainer .distance .value {
+    color: #3c1421;
+    padding-top: 3px;
+    font-size: 14px;
+    font-weight: 1000;
+}
+
+.textContainer .time {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.textContainer .time div {
+    display: flex;
+    flex-flow: column;
+    justify-content: flex-start;
+    align-items: center;
+    line-height: 10px;
+}
+.textContainer .time .value {
+    font-size: 13px;
+}
+.textContainer .time .units {
+    font-size: 9px;
+    color:rgba(80, 80, 80, 0.7);
+}

@@ -1,12 +1,15 @@
+import tokenService from "../utils/tokenService.js";
 const BASE_URL = "http://127.0.0.1:8000/api/v1/companies/";
 
 // CREATE
-function create(ownerId) {
-  let company = {};
-  company.owner = ownerId;
-  return fetch(BASE_URL, {
+function create(ownerId, company) {
+  company.user = ownerId;
+  return fetch(`${BASE_URL}`, {
     method: "POST",
-    headers: new Headers({ "Content-Type": "application/json" }),
+    headers: new Headers({
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${tokenService.getToken()}`,
+    }),
     body: JSON.stringify(company),
   }).then((res) => {
     if (res.ok) return res.json();
@@ -19,6 +22,10 @@ function create(ownerId) {
 function get(ownerId) {
   return fetch(`${BASE_URL}${ownerId}/`, {
     method: "GET",
+    headers: new Headers({
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${tokenService.getToken()}`,
+    }),
   }).then((res) => {
     if (res.ok) return res.json();
     throw new Error("Error: Company not found");
@@ -26,6 +33,20 @@ function get(ownerId) {
 }
 
 // UPDATE
+function update(ownerId, company) {
+  company.owner = ownerId;
+  return fetch(BASE_URL, {
+    method: "PATCH",
+    headers: new Headers({
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${tokenService.getToken()}`,
+    }),
+    body: JSON.stringify(company),
+  }).then((res) => {
+    if (res.ok) return res.json();
+    throw new Error("Error: .");
+  });
+}
 
 // DELETE
 

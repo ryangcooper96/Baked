@@ -11,3 +11,38 @@
     border: 1px solid silver;
     border-radius: 3px;
 }
+
+.formGroup > * {
+    margin: 3px;
+    font-family: 'Nunito';
+}
+
+.preview {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    
+    background: whitesmoke;
+    border: 2px solid silver;
+}
+
+.preview > h2 {
+    width: 100%;
+    padding: 2px 0px 2px 5px;
+    margin: 0;
+    font-size: 12px;
+    font-family: 'Nunito';
+    color: rgb(80,80,80);
+    background: silver;
+
+}
+
+.preview .ResultCard {
+    margin: 30px;
+}
+
+.formGroup label {
+    font-size: 12px;
+}

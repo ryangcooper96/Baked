@@ -1,38 +1,32 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import useUser from '../../hooks/useUser';
+import userService from "../../utils/userService"
+
 // import listing from "../../utils/listing"
 import './NavBar.css';
 
 const NavBar = () => {
   const { handleLogout, user } = useUser()
-  // const [basket, setBasket] = useState([])
-
-  // // OBTAIN USER BASKET
-  //   useEffect(() => {
-  //       async function getCart() {
-  //           const userCart = await listing.getListingsInCartbyLoggedInUser()
-  //           console.log("userCart: ", userCart)
-  //           setBasket([...userCart])
-  //       }
-  //       getCart()
-  //   }, [user])
 
   let nav = user ?
     <div className='NavBar'>
-
+        <NavLink to='/results' className='NavBar-link' >RESULTS</NavLink>
       <div>
         <NavLink to='/dashboard' className='NavBar-link'>
-          <span className='NavBar-welcome'>Hi, {user.username} &nbsp;</span><span className="material-symbols-rounded">account_circle</span>
+          <span className='NavBar-welcome'>Hi, {user.first_name}</span><span className="material-symbols-rounded">account_circle</span>
         </NavLink>
-          &nbsp;&nbsp;|&nbsp;&nbsp;
-        <NavLink to='' className='NavBar-link' onClick={handleLogout}>LOG OUT</NavLink>
-          &nbsp;&nbsp;|&nbsp;&nbsp;
-        <NavLink to='/basket' className='NavBar-link' >BASKET</NavLink>
+          &nbsp;|&nbsp;
+        <NavLink to='' className='NavBar-link' onClick={handleLogout}><span>LOG OUT</span><span className="material-symbols-rounded">logout</span></NavLink>
+          &nbsp;|&nbsp;
+        <NavLink to='/basket' className='NavBar-link' ><span>CART</span><span className="material-symbols-rounded"><span class="material-symbols-outlined">
+shopping_cart
+</span></span></NavLink>
       </div>
     </div>
     :
     <div className='NavBar'>
+      <NavLink to='/results' className='NavBar-link' >RESULTS</NavLink>
       <div>
         <NavLink to='/login' className='NavBar-link'>LOG IN</NavLink>
         &nbsp;&nbsp;|&nbsp;&nbsp;

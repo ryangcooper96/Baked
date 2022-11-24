@@ -7,19 +7,6 @@ import './HomePage.css'
 function HomePage() {
 
   const { handleLogout, user } = useUser()
-  const [data, setData] = useState({})
-
-  async function getCompany() {
-    console.log(user)
-    const data = await company.get(user)
-    setData({ ...data });
-  }
-  
-  useEffect(() => {
-    if (user) {
-      getCompany(user)
-    }  
-  },[user])
 
   return (
     <div className='HomePage'>

@@ -22,17 +22,13 @@ function getUser() {
 }
 
 function getUserInfo() {
-  console.log(`Token ${tokenService.getToken()}`);
-  return fetch(
-    `http://127.0.0.1:8000/user/${tokenService.getUserFromToken()}`,
-    {
-      method: "GET",
-      headers: new Headers({
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${tokenService.getToken()}`,
-      }),
-    }
-  )
+  return fetch(`${BASE_URL}user/${tokenService.getUserFromToken()}`, {
+    method: "GET",
+    headers: new Headers({
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${tokenService.getToken()}`,
+    }),
+  })
     .then((res) => {
       if (res.ok) return res.json();
       throw new Error("Couldn't get User Info");

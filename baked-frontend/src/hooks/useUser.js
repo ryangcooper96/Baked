@@ -6,13 +6,19 @@ export default function useUser() {
   const [state, setState] = React.useContext(UserContext);
 
   const handleSignupOrLogin = () => {
-    const freshUser = userService.getUser();
-    setState((state) => ({ ...state, user: freshUser }));
+    async function getAndSetUser() {
+      const id = await userService.getUser();
+      const userInfo = await userService.getUserInfo();
+      const user = { id, ...userInfo };
+      console.log(user);
+      setState({ user });
+    }
+    getAndSetUser();
   };
 
   const handleLogout = () => {
     userService.logout();
-    setState({ ...state, user: null });
+    setState({ user: null });
   };
 
   return {

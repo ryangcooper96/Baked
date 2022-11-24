@@ -7,12 +7,15 @@ const initialState = {
 export const UserContext = React.createContext(initialState);
 
 export const UserProvider = ({ children }) => {
-  const [state, setState] = React.useState(initialState);
+  const [state, setState] = React.useState({});
 
   React.useEffect(() => {
     async function getAndSetUser() {
-      const user = await userService.getUser();
-      setState({ ...state, user });
+      const id = await userService.getUser();
+      const userInfo = await userService.getUserInfo();
+      const user = { id, ...userInfo };
+      console.log(user);
+      setState({ user });
     }
     getAndSetUser();
   }, []);
