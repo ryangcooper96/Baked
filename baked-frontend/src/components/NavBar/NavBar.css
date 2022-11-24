@@ -24,23 +24,40 @@
   align-items: center;
 }
 
-.NavBar-logo {
-  font-family: 'Rubik Dirt';
-  font-size: 24px;
-}
 
 .NavBar-link {
   display: flex;
   flex-flow: row;
   justify-content: space-between;
   align-items: center;
-
+  
   padding: 5px 5px;
   margin: 0 5px;
-
+  
   font-size: 12px;
   text-decoration: none;
   color: #D4C2C5;
+}
+
+.NavBar-logo {
+  position: absolute;
+  top: 5px;
+  left: 10px;
+  z-index: 1;
+  
+  object-fit: contain;
+  
+  height: 60px;
+  width: 60px;
+  padding: 0;
+  
+  border: 3px solid #3c1421;
+  border-radius: 50vmax;
+}
+
+.NavBar-logo > img {
+  width: 100%;
+  border-radius: 50vmax;
 }
 
 .NavBar-welcome {

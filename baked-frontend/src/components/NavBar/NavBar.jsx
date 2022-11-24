@@ -10,8 +10,7 @@ const NavBar = () => {
   const { handleLogout, user } = useUser()
 
   let nav = user ?
-    <div className='NavBar'>
-        <NavLink to='/results' className='NavBar-link' >RESULTS</NavLink>
+    <>
       <div>
         <NavLink to='/dashboard' className='NavBar-link'>
           <span className='NavBar-welcome'>Hi, {user.first_name}</span><span className="material-symbols-rounded">account_circle</span>
@@ -23,10 +22,9 @@ const NavBar = () => {
 shopping_cart
 </span></span></NavLink>
       </div>
-    </div>
+    </>
     :
-    <div className='NavBar'>
-      <NavLink to='/results' className='NavBar-link' >RESULTS</NavLink>
+    <>
       <div>
         <NavLink to='/login' className='NavBar-link'>LOG IN</NavLink>
         &nbsp;&nbsp;|&nbsp;&nbsp;
@@ -34,11 +32,17 @@ shopping_cart
         &nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
         <NavLink to='/basket' className='NavBar-link' >BASKET</NavLink>
       </div>
-    </div>
+    </>
     ;
 
   return (
     <div className='NavBar'>
+      <div>
+        <NavLink to='/' className='NavBar-link NavBar-logo'>
+          <img src='https://img.freepik.com/premium-vector/bakery-logo-template_441059-121.jpg?w=2000' alt=''/>
+        </NavLink>
+        <NavLink to='/results' className='NavBar-link' >RESULTS</NavLink>
+      </div>
       {nav}
     </div>
   );
