@@ -18,9 +18,7 @@ const NavBar = () => {
           &nbsp;|&nbsp;
         <NavLink to='' className='NavBar-link' onClick={handleLogout}><span>LOG OUT</span><span className="material-symbols-rounded">logout</span></NavLink>
           &nbsp;|&nbsp;
-        <NavLink to='/basket' className='NavBar-link' ><span>CART</span><span className="material-symbols-rounded"><span class="material-symbols-outlined">
-shopping_cart
-</span></span></NavLink>
+        <NavLink to='/basket' className='NavBar-link' ><span>CART</span><span className="material-symbols-rounded">shopping_cart</span></NavLink>
       </div>
     </>
     :

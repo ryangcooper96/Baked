@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import company from "../../utils/company"
-import useUser from '../../hooks/useUser';
+// import useUser from '../../hooks/useUser';
 
 import './HomePage.css'
 
 function HomePage() {
 
-  const { handleLogout, user } = useUser()
+  // const { handleLogout, user } = useUser()
 
   return (
     <div className='HomePage'>

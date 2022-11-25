@@ -1,7 +1,12 @@
 .ResultsPage {
     display: flex;
+    flex-flow: row wrap;
     align-items: center;
     justify-content: center;
     width: 100vw;
-    height: 100vh;
+    height: calc(100vh - 40px);
+}
+
+.ResultsPage > * {
+    margin: 10px;
 }

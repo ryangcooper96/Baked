@@ -1,0 +1,33 @@
+.ResultDetailPage {
+
+}
+
+.ResultDetailPage .companyInfo {
+    position: relative;
+    height: 300px;
+}
+
+.ResultDetailPage .companyInfo .logoContainer {
+    height: 100px;
+    width: 100px;
+
+    position: absolute;
+    top: 200px;
+    left: 20px;
+    z-index: 1;
+
+    /* border: 2px solid ; */
+    border-radius: 50vmax;
+
+    object-fit: contain;
+}
+
+.ResultDetailPage .companyInfo .logoContainer > img {
+    width: 100%;
+    border-radius: 50vmax;
+}
+
+.ResultDetailPage {}
+
+.ResultDetailPage {}
+

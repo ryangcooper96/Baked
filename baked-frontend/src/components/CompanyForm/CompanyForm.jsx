@@ -33,9 +33,15 @@ function CompanyForm() {
 
   //
   function handleChange(e) {
-    setNewCompanyData(
-        { ...newCompanyData, [e.target.name]: e.target.value}
-    )
+    if (e.target.type === "file") {
+        setNewCompanyData(
+            { ...newCompanyData, [e.target.name]: e.target.files[0]}
+        )        
+    } else {
+        setNewCompanyData(
+            { ...newCompanyData, [e.target.name]: e.target.value}
+            )
+    }
     // BUG: MUST CHANGE TWO CHARACTERS FOR BUTTON TO APPEAR
     if(companyData[e.target.name] !== newCompanyData[e.target.name]) {
         setUpdateActive(true);
@@ -48,7 +54,6 @@ function CompanyForm() {
         await company.create(ownerId, newCompanyData)
     }
     createCompany(user.id)
-    console.log("Lit")
   }
   
   //
@@ -79,7 +84,7 @@ function CompanyForm() {
             <h2>PREVIEW</h2>
             <ResultCard company={newCompanyData}/>
         </div>
-        <form>
+        <form id='form' encType='multipart/form-data' >
             {user.is_company ? (
                 <div>
                     <span>EST: </span>
@@ -96,11 +101,11 @@ function CompanyForm() {
             </div>
             <div className="formGroup">
                 <label htmlFor='logo'>LOGO IMAGE: </label>
-                <input type="file" name="logo_image" accept="image/png, image/gif, image/jpeg" onChange={handleChange} required={true}/>
+                <input type="file" accept="image/*" name="logo_image" onChange={handleChange} />
             </div>
             <div className="formGroup">
                 <label htmlFor='hero'>HERO IMAGE: </label>
-                <input type="file" name="hero_image" accept="image/png, image/gif, image/jpeg" onChange={handleChange} required={true}/>
+                <input type="file" accept="image/*" name="hero_image" onChange={handleChange} />
             </div>
             <div className="formGroup">
                 <label htmlFor='contact_phone'>CONTACT PHONE: </label>
@@ -118,7 +123,7 @@ function CompanyForm() {
                     <button onSubmit={handleDelete}>DELETE</button>
                 </>
                  : 
-                    <button onClick={handleCreate} >CREATE</button>
+                    <button onClick={handleCreate} type="submit" >CREATE</button>
                 }
             </div>
     </div>
