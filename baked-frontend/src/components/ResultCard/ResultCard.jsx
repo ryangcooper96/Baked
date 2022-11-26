@@ -8,11 +8,12 @@ function ResultCard({ company }) {
     <Link to='/results/1' style={{textDecoration: 'none'}}>
         <div className='ResultCard'>
             <div className="logoContainer">
-                <img src='https://img.freepik.com/premium-vector/bakery-logo-template_441059-121.jpg?w=2000' alt='company logo'/>
+                <img src={company.logo_image ? company.logo_image.replace('upload/','upload/h_320,w_320,c_scale/') : ''} alt='company logo'/>
             </div>
-            <div className="heroContainer">
-                <div className='heroBlur'>
-                </div>
+            {/* <div className="heroContainer" style={{background: `url(${company.hero_image.replace('upload/','upload/h_80,w_72,c_scale/') ? company.hero_image : ''})`}}> */}
+            <div className="heroContainer" >
+                <img src={company.hero_image ? company.hero_image.replace('upload/','upload/h_800,w_720,c_scale/') : ''} alt='company hero'/>
+                <div className='heroBlur'></div>
                 <h2>{company.name}</h2>
             </div>
             <div className="textContainer">

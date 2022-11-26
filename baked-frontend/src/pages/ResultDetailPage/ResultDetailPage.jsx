@@ -26,7 +26,6 @@ function ResultDetailPage({ company }) {
     //     }
     // }, [])
 
-
   return (
     <div className='ResultDetailPage'>
         <div className="companyInfo">
@@ -35,7 +34,8 @@ function ResultDetailPage({ company }) {
             </div>
             <div className="heroContainer">
                 <div className='heroBlur'></div>
-                <h2>{company.name}</h2>
+                {/* <h2>{company ? company.name : 'Company Name'}</h2> */}
+                <h2>Company Name</h2>
             </div>
         </div>
         <div className="Products"></div>

@@ -27,7 +27,20 @@
     border-radius: 50vmax;
 }
 
-.ResultDetailPage {}
+.ResultDetailPage .heroContainer {
+    position: relative;
+    
+    /* display: flex;
+    justify-content: flex-end;
+    align-items: flex-end; */
+    height: 280px;
+}
 
-.ResultDetailPage {}
+.ResultDetailPage .heroContainer h2 {
+    position: absolute;
+    z-index: 1;
+    width: 200px;
+    right: 20px;
+    bottom: 20px;
+}
 
