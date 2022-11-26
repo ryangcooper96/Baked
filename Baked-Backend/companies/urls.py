@@ -1,9 +1,10 @@
 from django.urls import path
-from .views import CompanyList, CompanyDetail, ProductList, ProductDetail, LineItemList, LineItemDetail
+from .views import CompanyRetrieve, CompanyCreate, CompanyDetail, ProductList, ProductDetail, LineItemList, LineItemDetail
 
 urlpatterns = [
     # Companies
-    path('companies/', CompanyList.as_view()),
+    path('companies/ret/<int:user>/', CompanyRetrieve.as_view()),
+    path('companies/add/', CompanyCreate.as_view()),
     path('companies/<int:pk>/', CompanyDetail.as_view()),
     # Products
     path('product/', ProductList.as_view()),

@@ -1,28 +1,32 @@
 from rest_framework.views import APIView
-from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
-from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAdminUser
-
+from rest_framework.generics import CreateAPIView, RetrieveAPIView, RetrieveUpdateDestroyAPIView
+from rest_framework.permissions import IsAuthenticated, IsAdminUser
+from rest_framework.parsers import MultiPartParser, FormParser
 from .models import Company, Product, LineItem
 from .serializers import CompanySerializer, ProductSerializer, LineItemSerializer
 
 # Create your views here.
 
-# Companies
-class CompanyList(ListCreateAPIView):
+class CompanyRetrieve(RetrieveAPIView):
     queryset = Company.objects.all()
     serializer_class = CompanySerializer
-    permission_classes = (IsAdminUser, )
+    permission_classes = (IsAuthenticated, )
+
+class CompanyCreate(CreateAPIView):
+    queryset = Company.objects.all()
+    serializer_class = CompanySerializer
+    permission_classes = (IsAuthenticated, )
 
 
 class CompanyDetail(RetrieveUpdateDestroyAPIView):
     queryset = Company.objects.all()
     serializer_class = CompanySerializer
-    permission_classes = (IsAuthenticatedOrReadOnly, )
+    permission_classes = (IsAuthenticated, )
 
 
 
 # Products
-class ProductList(ListCreateAPIView):
+class ProductList(CreateAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
 
@@ -32,7 +36,7 @@ class ProductDetail(RetrieveUpdateDestroyAPIView):
 
 
 # Line Items
-class LineItemList(ListCreateAPIView):
+class LineItemList(CreateAPIView):
     queryset = LineItem.objects.all()
     serializer_class = LineItemSerializer
 

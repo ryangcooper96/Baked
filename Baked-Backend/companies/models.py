@@ -1,19 +1,30 @@
 from django.db import models
 from django.conf import settings
-
+from rest_framework.parsers import MultiPartParser, FormParser
+import uuid
 # Create your models here.
+
+
+def upload_to(instance, filename):
+    ext = filename.split('.')[-1]
+    print(uuid.uuid4)
+    print(uuid.uuid4())
+    print(str(uuid.uuid4()))
+    return 'images/{}_{}.{}'.format(instance.user.id,str(uuid.uuid4()),ext)
 
 # Company
 class Company(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, unique=True, on_delete=models.PROTECT)
     name = models.CharField(max_length=100)
     description = models.TextField(max_length=500)
-    logo_image = models.ImageField()
-    hero_image = models.ImageField()
+    logo_image = models.ImageField(upload_to=upload_to,blank=True,null=True)
+    # logo_image = models.CharField(max_length=200, blank=True)
+    hero_image = models.ImageField(upload_to=upload_to, blank=True, null=True)
+    # hero_image = models.CharField(max_length=200, blank=True)
     address_delivery = models.CharField(max_length=300)
     address_collection = models.CharField(max_length=300)
     address_billing = models.CharField(max_length=300)
-    contact_phone = models.IntegerField()
+    contact_phone = models.CharField(max_length=15)
     contact_email = models.EmailField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
