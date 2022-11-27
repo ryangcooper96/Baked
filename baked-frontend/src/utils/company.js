@@ -4,9 +4,6 @@ const BASE_URL = "http://127.0.0.1:8000/api/v1/companies/";
 // CREATE
 function create(ownerId, company) {
   company.user = ownerId;
-  company.address_billing = "a";
-  company.address_collection = "a";
-  company.address_delivery = "a";
 
   // Populate FormData object
   const formData = new FormData();
@@ -45,10 +42,6 @@ function get(ownerId) {
 // UPDATE
 function update(ownerId, company) {
   company.user = ownerId;
-  company.address_billing = "a";
-  company.address_collection = "a";
-  company.address_delivery = "a";
-  company.contact_phone = 123456;
 
   const formData = new FormData();
 
@@ -77,7 +70,7 @@ function remove(ownerId, company) {
       Authorization: `Bearer ${tokenService.getToken()}`,
     }),
   }).then((res) => {
-    if (res.ok) return res.json();
+    if (res.ok) return res;
     throw new Error("Error: .");
   });
 }

@@ -54,12 +54,27 @@ function login(creds) {
     .then(({ token }) => tokenService.setToken(token));
 }
 
+function update(ownerId, user) {
+  return fetch(`${BASE_URL}user/update/${ownerId}`, {
+    method: "PATCH",
+    headers: new Headers({
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${tokenService.getToken()}`,
+    }),
+    body: JSON.stringify(user),
+  }).then((res) => {
+    if (res.ok) return res.json();
+    throw new Error("Error: .");
+  });
+}
+
 const exports = {
   signup,
   getUser,
   getUserInfo,
   logout,
   login,
+  update,
 };
 
 export default exports;

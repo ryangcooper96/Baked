@@ -2,19 +2,16 @@ import React, { useEffect, useState } from 'react'
 
 import company from "../../utils/company"
 import useUser from '../../hooks/useUser';
+import userService from "../../utils/userService"
 import ResultCard from '../ResultCard/ResultCard';
 import CloudinaryUploadWidget from '../Cloudinary/CloudinaryUploadWidget';
 
 import './CompanyForm.css'
-import { UserContext } from '../../context/UserContext';
 
 function CompanyForm() {
 
   const { user } = useUser()
   const [updateActive, setUpdateActive] = useState(false);
-
-  const [logoImageUrl, setLogoImageUrl] = useState("");
-  const [heroImageUrl, setHeroImageUrl] = useState("");
 
   const [companyData, setCompanyData] = useState({
     name: '',
@@ -33,16 +30,15 @@ function CompanyForm() {
     address_billing: '',
     address_collection: '',
     address_delivery: '',
-    logo_image: '',
-    hero_image: '',
+    logo_image: 'a',
+    hero_image: 'a',
     contact_phone: '',
     contact_email: ''
   })
 
-  //
+  // FORM FIELD CHANGES / UPDATE STATE
   function handleChange(e) {
         setNewCompanyData({ ...newCompanyData, [e.target.name]: e.target.value})
-    
     // BUG: MUST CHANGE TWO CHARACTERS FOR BUTTON TO APPEAR
     if(companyData[e.target.name] !== newCompanyData[e.target.name]) {
         setUpdateActive(true);
@@ -52,18 +48,26 @@ function CompanyForm() {
   // CREATE //
     function handleCreate() {
         async function createCompany(ownerId) {
+            // create company
             await company.create(ownerId, newCompanyData)
+            // Set user.is_company to TRUE
+            const updatedUser = { ...user, is_company: true }
+            await user.update(ownerId, updatedUser)
         }
         createCompany(user.id)
+
     }
     
   // READ //
     useEffect(() => {
         async function getCompany(ownerId) {
+            // get company
             const data = await company.get(ownerId)
+            // set states
             setCompanyData({ ...data });
             setNewCompanyData({ ...data });
         }
+        // check if company exists
         if (user && user.is_company) {
             getCompany(user.id)
         }  
@@ -72,16 +76,21 @@ function CompanyForm() {
   // UPDATE //
     function handleUpdate() {
         async function updateCompany(ownerId) {
+            // update company
             await company.update(ownerId, newCompanyData)
         }
-        
         updateCompany(user.id)
     }
   
   // DELETE //
     function handleDelete() {
         async function removeCompany(ownerId) {
+            // delete company
             await company.remove(ownerId)
+
+            // set user.is_company to FALSE
+            const updatedUser = { ...user, is_company: true }
+            await userService.update(ownerId, updatedUser)            
         }
         removeCompany(user.id)
     }
@@ -90,14 +99,14 @@ function CompanyForm() {
   return (
     <div className="CompanyForm">
         <div className="preview">
-            <h2>PREVIEW</h2>
+            <h2>PREVIEW:</h2>
             <ResultCard company={newCompanyData}/>
         </div>
         <form id='form' encType='multipart/form-data' >
-            {user && user.is_company ? (
-                <div>
-                    <span>EST: </span>
-                    <span>{newCompanyData.created_at}</span>
+            {user && user.is_company && newCompanyData.created_at ? (
+                <div className='established'>
+                    <span>ESTABLISHED: </span>
+                    <span>{newCompanyData.created_at.split('-')[2].split('T')[0] + '-' + newCompanyData.created_at.split('-')[1] + '-' + newCompanyData.created_at.split('-')[0]}</span>
                 </div>
             ) : null}
             <div className='formGroup'>
@@ -111,12 +120,12 @@ function CompanyForm() {
             <div className="formGroup">
                 <label htmlFor='logo'>LOGO IMAGE: </label>
                 <CloudinaryUploadWidget name="logo_image" setNewCompanyData={setNewCompanyData} newCompanyData={newCompanyData}/>
-                <img id="uploadedimage" src={newCompanyData.logo_image.replace('upload/','upload/h_100,w_100,c_scale/')} alt=""/>
+                {newCompanyData.logo_image ? <span className='indicator'>IMAGE SELECTED&nbsp;<span className="material-symbols-rounded">download_done</span></span> : null}
             </div>
             <div className="formGroup">
                 <label htmlFor='hero'>HERO IMAGE: </label>
                 <CloudinaryUploadWidget name="hero_image" setNewCompanyData={setNewCompanyData} newCompanyData={newCompanyData}/>
-                <img id="uploadedimage" src={newCompanyData.hero_image.replace('upload/','upload/h_100,w_100,c_scale/')} alt=""/>
+                {newCompanyData.hero_image ? <span className='indicator'>IMAGE SELECTED&nbsp;<span className="material-symbols-rounded">download_done</span></span> : null}
             </div>
             <div className="formGroup">
                 <label htmlFor='address_billing'>BILLING ADDRESS: </label>
@@ -138,17 +147,17 @@ function CompanyForm() {
                 <label htmlFor='contact_email'>CONTACT EMAIL: </label>
                 <input type="email" name='contact_email' value={newCompanyData.contact_email} onChange={handleChange} required={true}/>
             </div>
-        </form>
             <div className="buttonGroup">
                 {user && user.is_company ? 
                 <>
-                    <button disabled={!updateActive} onClick={handleUpdate}>UPDATE</button>
-                    <button onClick={handleDelete}>DELETE</button>
+                    <button type='button' disabled={!updateActive} onClick={handleUpdate}>SAVE</button>
+                    <button type='button' onClick={handleDelete}>DELETE</button>
                 </>
                  : 
-                    <button onClick={handleCreate} type="submit" >CREATE</button>
+                 <button type='button' onClick={handleCreate} >CREATE</button>
                 }
             </div>
+        </form>
     </div>
   )
 }

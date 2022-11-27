@@ -8,11 +8,11 @@ function ResultCard({ company }) {
     <Link to='/results/1' style={{textDecoration: 'none'}}>
         <div className='ResultCard'>
             <div className="logoContainer">
-                <img src={company.logo_image ? company.logo_image.replace('upload/','upload/h_320,w_320,c_scale/') : ''} alt='company logo'/>
+                {company.logo_image ? <img src={company.logo_image.replace('upload/','upload/h_320,w_320,c_scale/')} alt='company logo'/> : <span>Logo</span>}
             </div>
             {/* <div className="heroContainer" style={{background: `url(${company.hero_image.replace('upload/','upload/h_80,w_72,c_scale/') ? company.hero_image : ''})`}}> */}
             <div className="heroContainer" >
-                <img src={company.hero_image ? company.hero_image.replace('upload/','upload/h_800,w_720,c_scale/') : ''} alt='company hero'/>
+                {company.hero_image ? <img src={company.logo_image.replace('upload/','upload/h_800,w_720,c_scale/')} alt='company hero'/> : <span>Hero</span>}
                 <div className='heroBlur'></div>
                 <h2>{company.name}</h2>
             </div>
@@ -20,9 +20,9 @@ function ResultCard({ company }) {
                 <div className="statusContainer">
                 <div className="reviews">
                     <span className='material-symbols-rounded'>star</span>
-                    <span className='avg'>4.7</span>
+                    <span className='avg'>0.0</span>
                     &nbsp;
-                    <span className='total'>&#40;34&#41;</span>
+                    <span className='total'>&#40;0&#41;</span>
                 </div>
                 <div className="distance">
                     <span className='material-symbols-rounded'>near_me</span>
@@ -37,7 +37,7 @@ function ResultCard({ company }) {
                     <span className='units'>MINS</span>
                     </div>
                 </div> */}
-                <p>{company.description}</p>
+                <p className='description'>{company.description}</p>
             </div>
         </div>
     </Link>

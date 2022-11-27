@@ -58,12 +58,8 @@ class CloudinaryUploadWidget extends Component {
 
   render() {
     return (
-      <button
-        type="button"
-        id={`upload_widget-${this.name}`}
-        className="cloudinary-button"
-      >
-        Upload
+      <button type="button" id={`upload_widget-${this.name}`}>
+        UPLOAD&nbsp;<span className="material-symbols-rounded">upload</span>
       </button>
     );
   }

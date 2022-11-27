@@ -26,12 +26,18 @@
 }
 
 .ResultCard:hover .heroContainer .heroBlur {
-    background: linear-gradient( rgba(255, 255, 255, 0.3) 40%, #3c1421 80%);
+    background: linear-gradient( rgba(255, 255, 255, 0.1) 40%, #3c1421 90%);
     transition: 0.3s;
 }
 
 .logoContainer {
-
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    font-weight: 1000;
+    color: #3c1421;
+    
     position: absolute;
     top: -15px;
     left: 10px;
@@ -56,10 +62,16 @@
 }
 
 .heroContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: relative;
     
     height: 180px;
     width: 100%;
+    
+    font-weight: 1000;
+    color: #3c1421;
 }
 
 .heroContainer .heroBlur {
@@ -94,28 +106,30 @@
     font-weight: 1000;
     line-height: 22px;
     color: white;
-    /* color:#3c1421; */
+
+    text-shadow: 1px 2px#3c1421;
 }
 
 .textContainer {
-    /* border-top: 3px solid #DED4F3; */
-    /* border-top: 3px solid #3c1421; */
     height: 100%;
     width: 100%;
     padding: 5px 10px;
 
-    border-left: 2px solid rgba(80, 80, 80, 0.5);
     border-left: 2px solid #D4C2C5;
-    border-bottom: 2px solid rgba(80, 80, 80, 0.5);
     border-bottom: 2px solid #D4C2C5;
 
     transition: 0.3s;
 }
 
-.textContainer p {
+.textContainer .description {
     margin: 5px 0 0 0;
     font-size: 13px;
     color: rgb(80, 80, 80);
+
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
 .textContainer .statusContainer {
