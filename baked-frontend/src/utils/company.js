@@ -39,6 +39,21 @@ function get(ownerId) {
   });
 }
 
+// READ
+// Need to access company based on user
+function getAll(search) {
+  return fetch(`${BASE_URL}all/?search=${search}`, {
+    method: "GET",
+    headers: new Headers({
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${tokenService.getToken()}`,
+    }),
+  }).then((res) => {
+    if (res.ok) return res.json();
+    throw new Error("Error: No Companies found.");
+  });
+}
+
 // UPDATE
 function update(ownerId, company) {
   company.user = ownerId;
@@ -78,6 +93,7 @@ function remove(ownerId, company) {
 const exports = {
   create,
   get,
+  getAll,
   update,
   remove,
 };

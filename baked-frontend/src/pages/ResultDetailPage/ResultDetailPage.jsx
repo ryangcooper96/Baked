@@ -1,41 +1,38 @@
 import React, { useEffect, useState } from 'react'
+import { useNavigate, useParams } from 'react-router-dom'
+
+import company from '../../utils/company'
 
 import './ResultDetailPage.css'
 
-function ResultDetailPage({ company }) {
+function ResultDetailPage() {
 
+    const { id } = useParams();
+    const [ companyData, setCompanyData ] = useState({})
     const [ products, setProducts ] = useState({})
-    const [ lineItems, setLineItems ] = useState({})
 
-    // async function getProducts() {
-    //     const data = await product.get();
-    //     setProducts({ ...data })
-    //     return data
-    // }
-    // async function getLineItems() {
-    //     const data = await lineItem.get();
-    //     setLineItems({ ...data })
-    // }
-    
-    // useEffect(() => {
-    //     try {
-    //         const fetchedProducts = getProducts();
-    //         fetchedProducts.forEach((prod) => {
-    //             getLineItems(prod);
-    //         })
-    //     }
-    // }, [])
+    useEffect(() => {
+        async function getCompany(id) {
+            // get company
+            const data = await company.get(id)
+            // set states
+            setCompanyData({ ...data });
+        }
+        getCompany(id)
+    },[])
 
   return (
     <div className='ResultDetailPage'>
         <div className="companyInfo">
             <div className="logoContainer">
-                <img src='https://img.freepik.com/premium-vector/bakery-logo-template_441059-121.jpg?w=2000' alt='company logo'/>
+                <img src={companyData.logo_image} alt='company logo'/>
             </div>
             <div className="heroContainer">
                 <div className='heroBlur'></div>
-                {/* <h2>{company ? company.name : 'Company Name'}</h2> */}
-                <h2>Company Name</h2>
+                <h2>{companyData.name}</h2>
+            </div>
+            <div className="desciption">
+                <p>{companyData.description}</p>
             </div>
         </div>
         <div className="Products"></div>

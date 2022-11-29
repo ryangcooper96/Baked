@@ -23,7 +23,7 @@ function App() {
           <Route exact path="/results" element={<ResultsPage />} />
           <Route
             exact
-            path="/results/1"
+            path="/results/:id"
             element={<ResultDetailPage company={company} />}
           />
           <Route exact path="/login" element={<LoginPage />} />

@@ -1,11 +1,12 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import ResultCard from '../../components/ResultCard/ResultCard'
+import company from '../../utils/company'
 
 import './ResultsPage.css'
 
 function ResultsPage() {
 
-  const company = {
+  const [ companies, setCompanies ] = useState([{
     created_at: '',
     name: 'Sample Company',
     description: 'A description of the sample company to entice customers.',
@@ -13,14 +14,23 @@ function ResultsPage() {
     hero_image: '',
     contact_phone: '',
     contact_email: '',
-  }
+  }])
+  const [ search, setSearch ] = useState('');
+
+  useEffect(() => {
+    async function getAllCompanies(search) {
+      const data = await company.getAll(search);
+      setCompanies([...data])
+    }
+    getAllCompanies(search)
+  }, [search])
 
   return (
     <div className='ResultsPage'>
-        <ResultCard company={company}/>
-        <ResultCard company={company}/>
-        <ResultCard company={company}/>
-        <ResultCard company={company}/>
+      <input className='searchBar' type="text" onChange={(e) => (setSearch(e.target.value))} value={search} name='search'/>
+      <div className='results'>
+        {companies.map((company) => (<ResultCard company={company} />))}
+      </div>
     </div>
   )
 }
