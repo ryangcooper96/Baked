@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { NavLink, Routes, Route } from 'react-router-dom';
 
+import company from "../../utils/company"
 import useUser from '../../hooks/useUser';
 
 import CompanyForm from '../../components/CompanyForm/CompanyForm'
-import HygieneForm from '../../components/HygieneForm/HygieneForm'
 import ProductForm from '../../components/ProductForm/ProductForm';
 
 import "./DashboardPage.css"
@@ -13,7 +13,43 @@ function DashboardPage() {
 
   const { user } = useUser()
 
-  useEffect(() => {}, [user])
+  const [companyData, setCompanyData] = useState({
+    name: '',
+    description: '',
+    address_billing: '',
+    address_collection: '',
+    address_delivery: '',
+    logo_image: '',
+    hero_image: '',
+    contact_phone: '',
+    contact_email: ''
+  })
+  const [newCompanyData, setNewCompanyData] = useState({
+    name: '',
+    description: '',
+    address_billing: '',
+    address_collection: '',
+    address_delivery: '',
+    logo_image: 'a',
+    hero_image: 'a',
+    contact_phone: '',
+    contact_email: ''
+  })
+
+  // READ //
+    useEffect(() => {
+        async function getCompany(ownerId) {
+            // get company
+            const data = await company.get(ownerId)
+            // set states
+            setCompanyData({ ...data });
+            setNewCompanyData({ ...data });
+        }
+        // check if company exists
+        if (user && user.is_company) {
+            getCompany(user.id)
+        }  
+    },[user])
 
   return (
     <div className='DashboardPage'>
@@ -24,12 +60,11 @@ function DashboardPage() {
               <li><span>Company Settings</span>
                 <ul>
                   { (user && !user.is_company) ? 
-                    <li><NavLink to='dashboard/company/general'><span>Sign Up</span></NavLink></li>
+                    <li><NavLink to='company/general'><span>Sign Up</span></NavLink></li>
                     :
                     <>
-                      <li><NavLink to='dashboard/company/general'><span>General Info</span></NavLink></li>
-                      <li><NavLink to='dashboard/company/hygiene'><span>Hygiene Rating</span></NavLink></li>
-                      <li><NavLink><span>Products</span></NavLink></li>
+                      <li><NavLink to='company/general'><span>General Info</span></NavLink></li>
+                      <li><NavLink to='company/products'><span>Products</span></NavLink></li>
                     </>
                   }
                 </ul>
@@ -40,9 +75,8 @@ function DashboardPage() {
         </div>
         <div className='dashboardContent'>
           <Routes>
-            <Route path='dashboard/company/general' element={<CompanyForm/>} />
-            <Route path='dashboard/company/hygiene' element={<HygieneForm/>} />
-            <Route path='dashboard/company/product' element={<ProductForm/>} />
+            <Route path='company/general' element={<CompanyForm companyData={companyData} setCompanyData={setCompanyData} newCompanyData={newCompanyData} setNewCompanyData={setNewCompanyData}/>} />
+            <Route path='company/products/*' element={<ProductForm companyData={companyData}/>} />
           </Routes>
         </div>
     </div>

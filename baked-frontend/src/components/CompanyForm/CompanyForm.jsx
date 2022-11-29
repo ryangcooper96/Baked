@@ -8,33 +8,10 @@ import CloudinaryUploadWidget from '../Cloudinary/CloudinaryUploadWidget';
 
 import './CompanyForm.css'
 
-function CompanyForm() {
+function CompanyForm({ companyData, setCompanyData, newCompanyData, setNewCompanyData }) {
 
   const { user } = useUser()
   const [updateActive, setUpdateActive] = useState(false);
-
-  const [companyData, setCompanyData] = useState({
-    name: '',
-    description: '',
-    address_billing: '',
-    address_collection: '',
-    address_delivery: '',
-    logo_image: '',
-    hero_image: '',
-    contact_phone: '',
-    contact_email: ''
-  })
-  const [newCompanyData, setNewCompanyData] = useState({
-    name: '',
-    description: '',
-    address_billing: '',
-    address_collection: '',
-    address_delivery: '',
-    logo_image: 'a',
-    hero_image: 'a',
-    contact_phone: '',
-    contact_email: ''
-  })
 
   // FORM FIELD CHANGES / UPDATE STATE
   function handleChange(e) {
@@ -55,23 +32,7 @@ function CompanyForm() {
             await user.update(ownerId, updatedUser)
         }
         createCompany(user.id)
-
     }
-    
-  // READ //
-    useEffect(() => {
-        async function getCompany(ownerId) {
-            // get company
-            const data = await company.get(ownerId)
-            // set states
-            setCompanyData({ ...data });
-            setNewCompanyData({ ...data });
-        }
-        // check if company exists
-        if (user && user.is_company) {
-            getCompany(user.id)
-        }  
-    },[user])
 
   // UPDATE //
     function handleUpdate() {
