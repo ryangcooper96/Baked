@@ -46,7 +46,7 @@ function getAll(search) {
     method: "GET",
     headers: new Headers({
       "Content-Type": "application/json",
-      Authorization: `Bearer ${tokenService.getToken()}`,
+      // Authorization: `Bearer ${tokenService.getToken()}`,
     }),
   }).then((res) => {
     if (res.ok) return res.json();

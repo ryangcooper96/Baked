@@ -6,17 +6,11 @@ import './ResultsPage.css'
 
 function ResultsPage() {
 
-  const [ companies, setCompanies ] = useState([{
-    created_at: '',
-    name: 'Sample Company',
-    description: 'A description of the sample company to entice customers.',
-    logo_image: '',
-    hero_image: '',
-    contact_phone: '',
-    contact_email: '',
-  }])
+  const [ companies, setCompanies ] = useState([
+  ])
   const [ search, setSearch ] = useState('');
 
+  // Load Companies w/ search query
   useEffect(() => {
     async function getAllCompanies(search) {
       const data = await company.getAll(search);
@@ -29,7 +23,7 @@ function ResultsPage() {
     <div className='ResultsPage'>
       <input className='searchBar' type="text" onChange={(e) => (setSearch(e.target.value))} value={search} name='search'/>
       <div className='results'>
-        {companies.map((company) => (<ResultCard company={company} />))}
+        {companies.map((company) => (<ResultCard company={company} key={company.id} />))}
       </div>
     </div>
   )

@@ -3,7 +3,7 @@
     flex-flow: column nowrap;
     align-items: flex-start;
     justify-content: flex-start;
-    padding: 50px;
+    padding: 50px 5vw 20px 5vw;
     width: 100vw;
     height: calc(100vh - 40px);
     background: white;
@@ -16,19 +16,29 @@
 .results {
     display: flex;
     flex-flow: row wrap;
-    align-items: center;
     justify-content: center;
+    align-items: flex-start;
+
+    height: 100%;
+    width: 100%;
     
     padding: 25px 10px;
     background: whitesmoke;
+    border: 2px solid #3c1421;
+    overflow: hidden;
 }
 
 .searchBar {
     font-family: 'Nunito', sans-serif;
     width: 200px;
     border-radius: none;
-    border: 2px solid silver;
+    border: 2px solid #3c1421;
+    background: #D4C2C5;
     border-bottom: none;
     outline: none;
     padding: 5px 8px;
+}
+
+.searchContainer {
+
 }
