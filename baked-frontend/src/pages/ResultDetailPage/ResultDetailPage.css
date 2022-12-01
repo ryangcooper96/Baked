@@ -1,46 +1,184 @@
 .ResultDetailPage {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
 
+    margin-bottom: -40px;
 }
 
-.ResultDetailPage .companyInfo {
+.ResultDetailPage .heroContainer {
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+
     position: relative;
-    height: 300px;
+
+    height: 280px;
+    width: 100%;
 }
 
-.ResultDetailPage .companyInfo .logoContainer {
+.ResultDetailPage .heroContainer .heroBlur {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    height: 100%;
+    width: 100%;
+
+    background: linear-gradient(rgba(255, 255, 255, 0.1) 60%, #3c1421 90%);
+}
+
+.ResultDetailPage .logoContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
     height: 100px;
     width: 100px;
 
     position: absolute;
-    top: 200px;
+    bottom: -15px;
     left: 20px;
     z-index: 1;
 
-    /* border: 2px solid ; */
     border-radius: 50vmax;
-
+    
     object-fit: contain;
 }
 
-.ResultDetailPage .companyInfo .logoContainer > img {
-    width: 100%;
+.ResultDetailPage .logoContainer img {
     border-radius: 50vmax;
+    border: 3px solid #3c1421;
+    width: 100%;
+    height: 100%;
 }
 
-.ResultDetailPage .heroContainer {
-    position: relative;
-    
-    /* display: flex;
-    justify-content: flex-end;
-    align-items: flex-end; */
-    height: 280px;
+.ResultDetailPage .heroContainer img {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    object-fit: cover;
+
+    width: 100%;
+    height: 100%;
 }
 
-.ResultDetailPage .heroContainer h2 {
+.ResultDetailPage .heroContainer h1 {
+    font-family: 'Nunito', san-serif;
+    color: white;
+    text-shadow: 2px 2px #3c1421;
+    font-size: 40px;
     position: absolute;
     z-index: 1;
-    width: 200px;
+    width: 350px;
     right: 20px;
-    bottom: 20px;
+    bottom: 10px;
+    text-align: right;
+    margin: 0;
+    padding: 0;
+}
+
+.ResultDetailPage .description {
+    width: 100%;
+    background: #D4C2C5;
+}
+
+.ResultDetailPage .description p {
+    color: #3c1421;
+    font-size: 18px;
+    text-align: right;
+    width: 100%;
+    margin: 0;
+    padding: 15px 25px;
+    font-weight: 300;
+}
+
+.ResultDetailPage .products {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    background: #D4C2C5;
+    padding-bottom: 20px;
+}
+
+.ResultDetailPage .products h2 {
+    background: #3c1421;
+    color: #D4C2C5;
+    width: 100%;
+    font-family: 'Nunito', san-serif;
+    font-size: 24px;
+    padding: 10px 25px 5px 25px;
+    margin: 0;
+}
+
+.ResultDetailPage .product {
+    display: flex;
+    margin: 20px 25px 0 25px;
+    width: calc(100% - 50px);
+    border: 2px solid #3c1421;
+    background: white;
+}
+
+.ResultDetailPage .product img {
+    background: white;
+    height: 120px;
+    width: 120px;
+    object-fit: cover;
+}
+
+.ResultDetailPage .product .productText {
+    padding: 5px 10px;
+    border-left: 2px solid #3c1421;
+}
+
+.ResultDetailPage .product h3 {
+    font-family: 'Nunito', san-serif;
+    font-weight: 1000;
+    color: #3c1421;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.ResultDetailPage .product p {
+    font-family: 'Nunito', san-serif;
+    color: #3c1421;
+    margin: 0;
+    padding: 0;
+}
+
+
+
+.ResultDetailPage .product .dietSymbols {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 2px 0;
+}
+
+.ResultDetailPage .product .dietSymbols > symbol + symbol {
+    margin: 0 5px;
+}
+
+.ResultDetailPage .product .symbol {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+    /* display: inline-block; */
+    font-family: 'Nunito', san-serif;
+    font-weight: 1000;
+    background: limegreen;
+    font-size: 12px;
+    height: 20px;
+    width: 20px;
+    border-radius: 50vmax;
+    color: white;
+    padding: 0;
 }
 

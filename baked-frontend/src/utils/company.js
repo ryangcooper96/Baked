@@ -26,8 +26,8 @@ function create(ownerId, company) {
 
 // READ
 // Need to access company based on user
-function get(ownerId) {
-  return fetch(`${BASE_URL}${ownerId}/`, {
+function getById(companyId) {
+  return fetch(`${BASE_URL}${companyId}/`, {
     method: "GET",
     headers: new Headers({
       "Content-Type": "application/json",
@@ -41,6 +41,21 @@ function get(ownerId) {
 
 // READ
 // Need to access company based on user
+function getByUser(ownerId) {
+  return fetch(`${BASE_URL}user/${ownerId}/`, {
+    method: "GET",
+    headers: new Headers({
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${tokenService.getToken()}`,
+    }),
+  }).then((res) => {
+    if (res.ok) return res.json();
+    throw new Error("Error: Company not found");
+  });
+}
+
+// READ
+// access all companies
 function getAll(search) {
   return fetch(`${BASE_URL}all/?search=${search}`, {
     method: "GET",
@@ -92,7 +107,8 @@ function remove(ownerId, company) {
 
 const exports = {
   create,
-  get,
+  getByUser,
+  getById,
   getAll,
   update,
   remove,

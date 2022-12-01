@@ -21,7 +21,10 @@ function ResultsPage() {
 
   return (
     <div className='ResultsPage'>
-      <input className='searchBar' type="text" onChange={(e) => (setSearch(e.target.value))} value={search} name='search'/>
+      <div className="searchContainer">
+        <input className='searchBar' type="text" placeholder='SEARCH' onChange={(e) => (setSearch(e.target.value))} value={search} name='search'/>
+        <span className="material-symbols-rounded">search</span>
+      </div>
       <div className='results'>
         {companies.map((company) => (<ResultCard company={company} key={company.id} />))}
       </div>

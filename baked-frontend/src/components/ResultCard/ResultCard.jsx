@@ -1,18 +1,23 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom';
 
 import './ResultCard.css'
 
 function ResultCard({ company }) {
+
+//   useEffect(() => {
+
+//   }, [company])
+    
   return (
-    <Link to='/results/1' style={{textDecoration: 'none'}}>
+    <Link to={`/results/${company.id}`} style={{textDecoration: 'none'}}>
         <div className='ResultCard'>
             <div className="logoContainer">
                 {company.logo_image ? <img src={company.logo_image.replace('upload/','upload/h_320,w_320,c_scale/')} alt='company logo'/> : <span>Logo</span>}
             </div>
             {/* <div className="heroContainer" style={{background: `url(${company.hero_image.replace('upload/','upload/h_80,w_72,c_scale/') ? company.hero_image : ''})`}}> */}
             <div className="heroContainer" >
-                {company.hero_image ? <img src={company.logo_image.replace('upload/','upload/h_800,w_720,c_scale/')} alt='company hero'/> : <span>Hero</span>}
+                {company.hero_image ? <img src={company.hero_image.replace('upload/','upload/h_800,w_720,c_scale/')} alt='company hero'/> : <span>Hero</span>}
                 <div className='heroBlur'></div>
                 <h2>{company.name}</h2>
             </div>

@@ -25,20 +25,42 @@
     padding: 25px 10px;
     background: whitesmoke;
     border: 2px solid #3c1421;
-    overflow: hidden;
+    overflow: scroll;
 }
 
+.searchBar input::placeholder {
+    color: #3c1421;
+    font-family: 'Nunito', sans-serif;
+}
 .searchBar {
     font-family: 'Nunito', sans-serif;
     width: 200px;
     border-radius: none;
-    border: 2px solid #3c1421;
+    color: #3c1421;
+    font-weight: 700;
     background: #D4C2C5;
-    border-bottom: none;
     outline: none;
-    padding: 5px 8px;
+    padding: 5px 8px 0 8px;
 }
 
 .searchContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
+    border: 2px solid #3c1421;
+    border-bottom: none;
+    background: #D4C2C5;
+    margin: 0;
+    padding: 0;
+    width: 200px;
+}
+
+.searchContainer span {
+    /* width: 20px; */
+    color: #3c1421;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 5px 0 0;
 }

@@ -30,8 +30,8 @@ function DashboardPage() {
     address_billing: '',
     address_collection: '',
     address_delivery: '',
-    logo_image: 'a',
-    hero_image: 'a',
+    logo_image: '',
+    hero_image: '',
     contact_phone: '',
     contact_email: ''
   })
@@ -40,7 +40,7 @@ function DashboardPage() {
     useEffect(() => {
         async function getCompany(ownerId) {
             // get company
-            const data = await company.get(ownerId)
+            const data = await company.getByUser(ownerId)
             // set states
             setCompanyData({ ...data });
             setNewCompanyData({ ...data });

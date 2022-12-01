@@ -8,10 +8,56 @@ import CloudinaryUploadWidget from '../Cloudinary/CloudinaryUploadWidget';
 
 import './CompanyForm.css'
 
-function CompanyForm({ companyData, setCompanyData, newCompanyData, setNewCompanyData }) {
+// function CompanyForm({ companyData, setCompanyData, newCompanyData, setNewCompanyData }) {
+function CompanyForm() {
 
   const { user } = useUser()
   const [updateActive, setUpdateActive] = useState(false);
+  const [companyData, setCompanyData] = useState({
+      name: '',
+      description: '',
+      address_billing: '',
+      address_collection: '',
+      address_delivery: '',
+      logo_image: '',
+      hero_image: '',
+      contact_phone: '',
+      contact_email: ''
+    })
+    const [newCompanyData, setNewCompanyData] = useState({
+        name: '',
+        description: '',
+        address_billing: '',
+        address_collection: '',
+        address_delivery: '',
+        logo_image: '',
+        hero_image: '',
+        contact_phone: '',
+        contact_email: ''
+    })
+    const [ imageURL, setImageURL ] = useState({
+    })
+
+    //
+    useEffect(() => {
+        setNewCompanyData({ ...newCompanyData, ...imageURL})
+    }, [imageURL])
+    
+    // READ //
+    useEffect(() => {
+        async function getCompany(ownerId) {
+            // get company
+            const data = await company.getByUser(ownerId)
+            // set states
+            setCompanyData({ ...data });
+            setNewCompanyData({ ...data });
+        }
+        // check if company exists
+        if (user && user.is_company) {
+            getCompany(user.id)
+        }  
+    },[user])
+
 
   // FORM FIELD CHANGES / UPDATE STATE
   function handleChange(e) {
@@ -21,15 +67,18 @@ function CompanyForm({ companyData, setCompanyData, newCompanyData, setNewCompan
         setUpdateActive(true);
     }
   }
+
+// Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam quos cum quae ducimus laborum tenetur numquam voluptatum dolores voluptas deserunt.
   
   // CREATE //
     function handleCreate() {
         async function createCompany(ownerId) {
+
             // create company
             await company.create(ownerId, newCompanyData)
             // Set user.is_company to TRUE
-            const updatedUser = { ...user, is_company: true }
-            await user.update(ownerId, updatedUser)
+            const updatedUser = { ...user, is_company: true, password: 'test1234', password_confirmation: 'test1234' }
+            await userService.update(ownerId, updatedUser)
         }
         createCompany(user.id)
     }
@@ -50,7 +99,7 @@ function CompanyForm({ companyData, setCompanyData, newCompanyData, setNewCompan
             await company.remove(ownerId)
 
             // set user.is_company to FALSE
-            const updatedUser = { ...user, is_company: true }
+            const updatedUser = { ...user, is_company: false, password: 'test1234', password_confirmation: 'test1234' }
             await userService.update(ownerId, updatedUser)            
         }
         removeCompany(user.id)
@@ -59,17 +108,17 @@ function CompanyForm({ companyData, setCompanyData, newCompanyData, setNewCompan
 
   return (
     <div className="CompanyForm">
-        <div className="preview">
-            <h2>PREVIEW:</h2>
-            <ResultCard company={newCompanyData}/>
-        </div>
-        <form id='form' encType='multipart/form-data' >
             {user && user.is_company && newCompanyData.created_at ? (
                 <div className='established'>
                     <span>ESTABLISHED: </span>
                     <span>{newCompanyData.created_at.split('-')[2].split('T')[0] + '-' + newCompanyData.created_at.split('-')[1] + '-' + newCompanyData.created_at.split('-')[0]}</span>
                 </div>
             ) : null}
+        <div className="preview">
+            <h2>PREVIEW:</h2>
+            <ResultCard company={newCompanyData}/>
+        </div>
+        <form id='form' encType='multipart/form-data' >
             <div className='formGroup'>
                 <label htmlFor='name'>NAME: </label>
                 <input type='text' name='name' value={newCompanyData.name} onChange={handleChange} required={true}></input>
@@ -80,12 +129,12 @@ function CompanyForm({ companyData, setCompanyData, newCompanyData, setNewCompan
             </div>
             <div className="formGroup">
                 <label htmlFor='logo'>LOGO IMAGE: </label>
-                <CloudinaryUploadWidget name="logo_image" setNewCompanyData={setNewCompanyData} newCompanyData={newCompanyData}/>
+                <CloudinaryUploadWidget name="logo_image" setImageURL={setImageURL} imageURL={imageURL}/>
                 {newCompanyData.logo_image ? <span className='indicator'>IMAGE SELECTED&nbsp;<span className="material-symbols-rounded">download_done</span></span> : null}
             </div>
             <div className="formGroup">
                 <label htmlFor='hero'>HERO IMAGE: </label>
-                <CloudinaryUploadWidget name="hero_image" setNewCompanyData={setNewCompanyData} newCompanyData={newCompanyData}/>
+                <CloudinaryUploadWidget name="hero_image" setImageURL={setImageURL} imageURL={imageURL}/>
                 {newCompanyData.hero_image ? <span className='indicator'>IMAGE SELECTED&nbsp;<span className="material-symbols-rounded">download_done</span></span> : null}
             </div>
             <div className="formGroup">
@@ -108,6 +157,10 @@ function CompanyForm({ companyData, setCompanyData, newCompanyData, setNewCompan
                 <label htmlFor='contact_email'>CONTACT EMAIL: </label>
                 <input type="email" name='contact_email' value={newCompanyData.contact_email} onChange={handleChange} required={true}/>
             </div>
+            {/* <div className="formGroup">
+                <label htmlFor='password'>CONTACT EMAIL: </label>
+                <input type="password" name='password' value={user.password} onChange={handleChange} required={true}/>
+            </div> */}
             <div className="buttonGroup">
                 {user && user.is_company ? 
                 <>

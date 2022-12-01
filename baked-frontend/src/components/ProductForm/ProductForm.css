@@ -1,31 +1,35 @@
 .ProductForm {
-    margin-left: 200px;
+    /* margin-left: 200px; */
     /* padding: 20px; */
+    width: 100%;
     background: #D4C2C5;
     font-family: 'Nunito', san-serif;
 }
 
 .ProductForm h2 {
-    
     font-weight: 400;
     font-size: 20px;
     margin: 5px 0 0 0;
     color: #3C1421;
     color: #D4C2C5;
     padding: 2px 0 2px 18px;
-    border-bottom: 2px solid #3c1421;
+    border-bottom: 2px solid #D4C2C5;
     background: #3C1421;
+}
+
+.linkDescription {
+    font-size: 12px;
 }
 
 .productNav {
     height: 200px;
     width: 200px;
+    width: calc(100% - 8px);
     overflow: scroll;
 }
 
 .productLink {
     display: block;
-    /* border: 2px solid silver; */
     border-bottom: 2px solid #D4C2C5;
     padding: 5px 10px;
     width: 100%;
@@ -34,8 +38,14 @@
 
     text-decoration: none;
     text-transform: uppercase;
+    font-size: 14px;
     font-weight: 300;
     color: #3C1421;
-
+    
     background: white;
+}
+
+.productLink:hover {
+    color: #D4C2C5;
+    background: #3C1421;
 }

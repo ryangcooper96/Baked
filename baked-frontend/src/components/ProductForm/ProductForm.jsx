@@ -67,7 +67,7 @@ function ProductForm({ companyData }) {
       <h2>PRODUCTS</h2>
       <nav className='productNav'>
         <NavLink className='productLink' to={`add/`}><span>New Product</span></NavLink>
-        {productsData.length ? productsData.map((product) => (<NavLink className='productLink' to={`${product.id}/`} onClick={handleProductSelection} key={product.id}><span id={product.id}>{product.name}</span></NavLink>)) : null }
+        {productsData.length ? productsData.map((product) => (<NavLink className='productLink' to={`${product.id}/`} onClick={handleProductSelection} key={product.id}><span className='linkTitle' id={product.id}>{product.name}</span><span className='linkDescription'> - {product.description}</span></NavLink>)) : null }
       </nav>
       <Routes>
         {productsData.length ? productsData.map((product) => (<Route path={`${product.id}/`} element={
@@ -84,21 +84,21 @@ function ProductForm({ companyData }) {
               </div>
               <div className='formGroup'>
                 <label htmlFor='name'>IMAGE: </label>
-                <input type='text' name='name' value={newProductData.name} onChange={handleChange} required={true}></input>
+                <input type='text' name='image' value={newProductData.image} onChange={handleChange} required={true}></input>
               </div>
               <div className='formGroup'>
                 <label htmlFor='name'>ALLERGENS: </label>
-                <input type='text' name='name' value={newProductData.name} onChange={handleChange} required={true}></input>
+                <input type='text' name='allergens' value={newProductData.allergens} onChange={handleChange} required={true}></input>
               </div>
               <div className='formGroup'>
                 <label htmlFor='name'>VEGAN: </label>
-                <input type='checkbox' name='name' value={newProductData.name} onChange={handleChange} required={true}></input>
+                <input type='checkbox' name='name' value={newProductData.vegan} onChange={handleChange} required={true}></input>
 
                 <label htmlFor='name'>VEGETARIAN: </label>
-                <input type='checkbox' name='name' value={newProductData.name} onChange={handleChange} required={true}></input>
+                <input type='checkbox' name='name' value={newProductData.vegetarian} onChange={handleChange} required={true}></input>
 
                 <label htmlFor='name'>GLUTEN FREE: </label>
-                <input type='checkbox' name='name' value={newProductData.name} onChange={handleChange} required={true}></input>
+                <input type='checkbox' name='name' value={newProductData.gluten_free} onChange={handleChange} required={true}></input>
               </div>
               <div className='formGroup'>
                 <label htmlFor='name'>AVAILABLE: </label>
